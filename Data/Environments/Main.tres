@@ -1,0 +1,22 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dkrcc6x4k5lua"]
+
+[ext_resource type="Texture2D" uid="uid://fu78kj0fkbdd" path="res://Assets/Textures/Sky.png" id="1_5k16y"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_3atxw"]
+panorama = ExtResource("1_5k16y")
+
+[sub_resource type="Sky" id="Sky_ll7hj"]
+sky_material = SubResource("PanoramaSkyMaterial_3atxw")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_ll7hj")
+tonemap_mode = 2
+glow_enabled = true
+glow_levels/4 = 0.02
+glow_levels/7 = 0.02
+glow_bloom = 0.01
+glow_blend_mode = 0
+fog_light_color = Color(0.164706, 0.180392, 0.207843, 1)
+fog_sky_affect = 0.75
+volumetric_fog_enabled = true

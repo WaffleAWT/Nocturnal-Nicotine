@@ -1,0 +1,186 @@
+[gd_scene load_steps=12 format=3 uid="uid://s1ogphroqgyr"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Characters/Player/player.gd" id="1_d8gj5"]
+[ext_resource type="Script" path="res://Scripts/Prefabs/Characters/Player/hand.gd" id="2_e18lj"]
+[ext_resource type="Theme" uid="uid://bqx3at1dahfrc" path="res://Data/Themes/Main.tres" id="3_vkquc"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/vhs.gdshader" id="4_tv6vi"]
+[ext_resource type="AudioStream" uid="uid://bkkfch68qy2hu" path="res://Assets/Audio/Sounds/Walk1.wav" id="5_vi5h1"]
+[ext_resource type="AudioStream" uid="uid://dmlgdme3ywl7t" path="res://Assets/Audio/Sounds/Walk2.wav" id="6_ssmom"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_umhin"]
+radius = 0.35
+height = 1.75
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uud77"]
+shader = ExtResource("4_tv6vi")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0
+shader_parameter/colorOffsetIntensity = 0.25
+
+[sub_resource type="Animation" id="Animation_5soxq"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_je3fx"]
+resource_name = "walking"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.0295713, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.03, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.392, -0.25, 0, 0.3, 0.0442377, 1.442, -0.25, 0, 0.25, 0, 1.392, -0.2, 0.0370903, 0.2, 0.0378051, 1.442, -0.25, 0, 0.25, 0, 1.392, -0.2, 0.0342313, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.3, 0.0328017, 0, -0.25, 0, 0.25, 0, 0, -0.2, 0.0356607, 0.2, 0.0370903, 0, -0.25, 0, 0.25, 0, 0, -0.2, 0.0277985, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2)
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Walk1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_vi5h1")
+}],
+"times": PackedFloat32Array(1)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Walk2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_ssmom")
+}],
+"times": PackedFloat32Array(2)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x0a5s"]
+_data = {
+"RESET": SubResource("Animation_5soxq"),
+"walking": SubResource("Animation_je3fx")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "animator", "interaction_label")]
+collision_layer = 4
+script = ExtResource("1_d8gj5")
+camera = NodePath("Camera3D")
+animator = NodePath("AnimationPlayer")
+interaction_label = NodePath("CanvasLayer/Control/InteractionLabel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0)
+shape = SubResource("CapsuleShape3D_umhin")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.392, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+light_energy = 0.75
+light_volumetric_fog_energy = 0.0
+spot_range = 15.0
+spot_angle = 30.0
+
+[node name="Hand" type="RayCast3D" parent="Camera3D" node_paths=PackedStringArray("interaction_label")]
+target_position = Vector3(0, 0, -1.5)
+collision_mask = 2
+collide_with_areas = true
+script = ExtResource("2_e18lj")
+interaction_label = NodePath("../../CanvasLayer/Control/InteractionLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_vkquc")
+metadata/_edit_lock_ = true
+
+[node name="InteractionLabel" type="Label" parent="CanvasLayer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VHSShader" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_uud77")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Dot" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x0a5s")
+}
+
+[node name="Walk1" type="AudioStreamPlayer" parent="."]
+volume_db = -13.0
+
+[node name="Walk2" type="AudioStreamPlayer" parent="."]
+volume_db = -13.0

@@ -1,0 +1,46 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bqx3at1dahfrc"]
+
+[ext_resource type="FontFile" uid="uid://c8c3vl0k24ukw" path="res://Assets/Fonts/Kenney Pixel.ttf" id="1_lxayj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i0fkg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3jae"]
+bg_color = Color(0.196078, 0.196078, 0.196078, 0.196078)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5w8w"]
+bg_color = Color(0, 0, 0, 0.0980392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72d4l"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 0.392157)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[resource]
+default_font = ExtResource("1_lxayj")
+default_font_size = 32
+Button/styles/focus = SubResource("StyleBoxEmpty_i0fkg")
+Button/styles/hover = SubResource("StyleBoxFlat_p3jae")
+Button/styles/normal = SubResource("StyleBoxFlat_x5w8w")
+Button/styles/pressed = SubResource("StyleBoxFlat_72d4l")

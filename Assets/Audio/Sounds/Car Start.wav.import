@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ccp1hb6u6wq8k"
+path="res://.godot/imported/Car Start.wav-eb8d2b3413baece1cfafa9d4fe8afce0.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sounds/Car Start.wav"
+dest_files=["res://.godot/imported/Car Start.wav-eb8d2b3413baece1cfafa9d4fe8afce0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

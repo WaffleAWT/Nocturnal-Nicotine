@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl3y050jyl2ie"]
+
+[ext_resource type="Script" path="res://Scripts/Components/cutscene_component.gd" id="1_uny8n"]
+
+[node name="CutsceneComponent" type="Camera3D" node_paths=PackedStringArray("animation_player")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 1.24475, -2)
+script = ExtResource("1_uny8n")
+animation_player = NodePath("")

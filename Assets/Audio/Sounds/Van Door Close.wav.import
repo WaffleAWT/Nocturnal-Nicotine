@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtot4dvejbt8r"
+path="res://.godot/imported/Van Door Close.wav-4823648583a173ded681d31e1eb6591f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sounds/Van Door Close.wav"
+dest_files=["res://.godot/imported/Van Door Close.wav-4823648583a173ded681d31e1eb6591f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj0k0o581wix6"]
+
+[ext_resource type="Theme" uid="uid://bqx3at1dahfrc" path="res://Data/Themes/Main.tres" id="1_1eqwa"]
+[ext_resource type="Script" path="res://Scripts/Components/dialogue_component.gd" id="2_pmudb"]
+[ext_resource type="AudioStream" uid="uid://bhr5ku00wm5q0" path="res://Assets/Audio/Sounds/Dialogue.wav" id="3_xatsb"]
+
+[node name="DialogueComponent" type="CanvasLayer" node_paths=PackedStringArray("name_label", "dialogue_label", "timer", "dialogue_background", "container", "audio_player")]
+layer = 2
+script = ExtResource("2_pmudb")
+name_label = NodePath("Control/VBoxContainer/NameContainer/NameLabel")
+dialogue_label = NodePath("Control/VBoxContainer/DialogueLabel")
+timer = NodePath("Control/Timer")
+dialogue_background = NodePath("Control/DialogueBackground")
+container = NodePath("Control/VBoxContainer")
+audio_player = NodePath("AudioStreamPlayer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_1eqwa")
+metadata/_edit_lock_ = true
+
+[node name="DialogueBackground" type="ColorRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -104.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="NameContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="Filler" type="Control" parent="Control/VBoxContainer/NameContainer"]
+layout_mode = 2
+
+[node name="Filler2" type="Control" parent="Control/VBoxContainer/NameContainer"]
+layout_mode = 2
+
+[node name="Filler3" type="Control" parent="Control/VBoxContainer/NameContainer"]
+layout_mode = 2
+
+[node name="Filler4" type="Control" parent="Control/VBoxContainer/NameContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Control/VBoxContainer/NameContainer"]
+layout_mode = 2
+text = "Name Here:"
+vertical_alignment = 1
+
+[node name="DialogueLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Dialogue goes here, this is an example of a character talking.
+You can even use Enter
+Like this :)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Control"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xatsb")
+volume_db = -32.0
+bus = &"Sounds"
+
+[connection signal="timeout" from="Control/Timer" to="." method="_on_timer_timeout"]

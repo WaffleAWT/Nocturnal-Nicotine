@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cba5sbvgjmtim"]
+
+[ext_resource type="Script" path="res://Scripts/Components/interaction_component.gd" id="1_8it6r"]
+
+[node name="InteractionComponent" type="Area3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_8it6r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]

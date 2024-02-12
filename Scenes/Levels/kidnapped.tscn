@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpgf2iof1oj5a"]
+
+[ext_resource type="Theme" uid="uid://bqx3at1dahfrc" path="res://Data/Themes/Main.tres" id="1_42sws"]
+[ext_resource type="Script" path="res://Scripts/Levels/kidnapped.gd" id="1_s1xkv"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/vhs.gdshader" id="1_y3mvb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibdt4"]
+shader = ExtResource("1_y3mvb")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0
+shader_parameter/colorOffsetIntensity = 0.25
+
+[node name="Kidnapped" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_42sws")
+script = ExtResource("1_s1xkv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -24.5
+offset_right = 125.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You got kidnapped by the mafia!
+Ending number : 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VHS" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ibdt4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://bonmwwxj2i1he"]
+
+[ext_resource type="Script" path="res://Scripts/Prefabs/Props/back_home.gd" id="1_q1i8l"]
+[ext_resource type="Texture2D" uid="uid://drsvwifcnnrr5" path="res://Assets/Textures/Particles/light_03.png" id="2_88vkj"]
+[ext_resource type="Theme" uid="uid://bqx3at1dahfrc" path="res://Data/Themes/Main.tres" id="3_iby83"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8ioi"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_88vkj")
+billboard_keep_scale = true
+
+[sub_resource type="Gradient" id="Gradient_r68y6"]
+offsets = PackedFloat32Array(0, 0.166667, 0.846667, 1)
+colors = PackedColorArray(1, 0, 0.541176, 0, 1, 0, 0.541176, 1, 1, 0, 0.541176, 1, 1, 0, 0.541176, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_maaen"]
+gradient = SubResource("Gradient_r68y6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m4jwl"]
+gravity = Vector3(0, 2.5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_maaen")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ftwe5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ixwqs"]
+radius = 0.764315
+
+[node name="BackHome" type="Node3D" node_paths=PackedStringArray("collision")]
+visible = false
+script = ExtResource("1_q1i8l")
+collision = NodePath("Area3D/CollisionShape3D")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_g8ioi")
+amount = 16
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_m4jwl")
+draw_pass_1 = SubResource("QuadMesh_ftwe5")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00278, 0)
+shape = SubResource("CylinderShape3D_ixwqs")
+disabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -24.0
+offset_right = 61.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_iby83")
+text = "Get inside (E)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

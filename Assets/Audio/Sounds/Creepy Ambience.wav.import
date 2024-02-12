@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bqlutaxkcg4ef"
+path="res://.godot/imported/Creepy Ambience.wav-b0b9c35af94ce478315c10b29377c84a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sounds/Creepy Ambience.wav"
+dest_files=["res://.godot/imported/Creepy Ambience.wav-b0b9c35af94ce478315c10b29377c84a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
